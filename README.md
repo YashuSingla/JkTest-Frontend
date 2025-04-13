@@ -1,59 +1,176 @@
 # JkTestYashu
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.7.
+This project is a social post management application built with Angular. It includes features such as user authentication, post creation, post listing, and post detail views. The application uses Jest for unit testing and TailwindCSS for styling.
 
-## Development server
+## Table of Contents
 
-To start a local development server, run:
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Setup and Installation](#setup-and-installation)
+- [Development Server](#development-server)
+- [Building the Project](#building-the-project)
+- [Running Tests](#running-tests)
+- [Environment Configuration](#environment-configuration)
+- [Technologies Used](#technologies-used)
+- [Future Scopes](#future-scopes)
+- [License](#license)
 
-```bash
-ng serve
+---
+
+## Features
+
+- **Authentication**: Google Sign-In and token-based authentication.
+- **Post Management**:
+  - Create new posts.
+  - View a list of posts.
+  - View detailed information about a specific post.
+- **Unit Testing**: Comprehensive unit tests using Jest.
+- **Lazy Loading**: Routes are lazy-loaded for better performance.
+
+---
+
+## Project Structure
+
+The project follows a modular structure for scalability and maintainability:
+
+```
+src/
+├── app/
+│   ├── core/                # Core services, guards, and interceptors
+│   ├── features/            # Feature modules (e.g., posts, auth)
+│   ├── common/              # Shared components (e.g., logout button)
+│   ├── app.component.*      # Root component
+│   ├── app.routes.ts        # Application routes
+│   └── app.config.ts        # Application configuration
+├── environments/            # Environment-specific configurations
+├── styles.scss              # Global styles
+├── main.ts                  # Application bootstrap
+└── index.html               # Application entry point
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Setup and Installation
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Set Up TailwindCSS**:
+   Initialize TailwindCSS if not already configured:
+   ```bash
+   npm run tailwind:init
+   ```
+
+4. **Environment Variables**:
+   Update the `src/environments/environment.ts` file with your API base URL and authentication keys:
+   ```ts
+   export const environment = {
+       production: false,
+       apiBaseUrl: 'http://localhost:3000',
+       googleClientId: 'your-google-client-id',
+       facebookAppId: 'your-facebook-app-id',
+   };
+   ```
+
+---
+
+## Development Server
+
+To start the development server, run:
 
 ```bash
-ng generate component component-name
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The application will be available at `http://localhost:4200/`. The server will automatically reload when you make changes to the source files.
+
+---
+
+## Building the Project
+
+To build the project for production, run:
 
 ```bash
-ng generate --help
+npm run build
 ```
 
-## Building
+The build artifacts will be stored in the `dist/` directory. The production build is optimized for performance.
 
-To build the project run:
+---
+
+## Running Tests
+
+### Unit Tests
+
+Run unit tests using Jest:
 
 ```bash
-ng build
+npm test
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Test Coverage
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+To generate a test coverage report, use:
 
 ```bash
-ng test
+npm test -- --coverage
 ```
 
-## Running end-to-end tests
+The coverage report will be available in the `coverage/` directory.
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+## Environment Configuration
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+The project uses environment-specific configurations located in the `src/environments/` directory. Update the `environment.ts` and `environment.prod.ts` files as needed.
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Technologies Used
+
+- **Angular**: Framework for building the application.
+- **TailwindCSS**: Utility-first CSS framework for styling.
+- **Jest**: Testing framework for unit tests.
+- **RxJS**: Reactive programming library for handling asynchronous data streams.
+- **Zone.js**: Angular's execution context for change detection.
+- **TypeScript**: Superset of JavaScript for type safety.
+
+---
+
+## Future Scopes
+
+- **Role-Based Access Control (RBAC)**:
+  - Implement user roles such as admin, editor, and viewer.
+  - Restrict access to certain features based on roles.
+
+- **Social Media Integration**:
+  - Allow users to share posts directly to social media platforms like Facebook, Twitter, and LinkedIn.
+
+- **Real-Time Notifications**:
+  - Add WebSocket or Firebase-based real-time notifications for user interactions.
+
+- **Resposivness**:
+  - Implement styles for responsivness.
+
+- **Enhanced Analytics**:
+  - Provide detailed analytics for user engagement and post performance.
+
+- **Dark Mode**:
+  - Add a toggle for light and dark themes to improve user experience.
+
+- **Mobile App**:
+  - Extend the project to a mobile app using frameworks like Ionic or React Native.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
