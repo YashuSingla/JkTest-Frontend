@@ -5,7 +5,7 @@ This project is a social post management application built with Angular. It incl
 ## Table of Contents
 
 - [Features](#features)
-- Authentication Flow & Token Usage
+- [Authentication Flow & Token Usage](#authentication-flow-&-token-usage)
 - [Project Structure](#project-structure)
 - [Setup and Installation](#setup-and-installation)
 - [Development Server](#development-server)
