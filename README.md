@@ -5,6 +5,7 @@ This project is a social post management application built with Angular. It incl
 ## Table of Contents
 
 - [Features](#features)
+- Authentication Flow & Token Usage
 - [Project Structure](#project-structure)
 - [Setup and Installation](#setup-and-installation)
 - [Development Server](#development-server)
@@ -17,15 +18,52 @@ This project is a social post management application built with Angular. It incl
 
 ---
 
-## Features
+ ## Features
 
 - **Authentication**: Google Sign-In and token-based authentication.
 - **Post Management**:
   - Create new posts.
   - View a list of posts.
   - View detailed information about a specific post.
+  - View your own posts via a protected route.
 - **Unit Testing**: Comprehensive unit tests using Jest.
 - **Lazy Loading**: Routes are lazy-loaded for better performance.
+- **Token Handling**: JWT token is securely stored and used for accessing protected backend APIs.
+
+---
+
+## Authentication Flow & Token Usage
+
+- **Google Sign-In Integration**:
+  - The application uses `@abacritt/angularx-social-login` for seamless Google authentication.
+  - On successful login, Google returns an `id_token`.
+
+- **Token Transmission to Backend**:
+  - The `id_token` is sent to the backend via a Post request to `/auth/google`.
+  - The backend validates the Google token, extracts user data, and returns a JWT token.
+
+- **JWT Token Storage**:
+  - The frontend stores the returned JWT token securely in `localStorage`.
+
+- **Using JWT in Protected Requests**:
+  - All secure API calls (e.g., `GET /posts/my-posts`, `POST /posts`) include the token in the `Authorization` header as:
+    ```
+    Authorization: Bearer <JWT_TOKEN>
+    ```
+
+- **Fetching Posts**:
+  - `GET /posts`: Public, fetches all posts.
+  - `GET /posts/:id`: Public, fetches a single post by its ID.
+  - `GET /posts/my-posts`: Protected, returns posts created by the authenticated user.
+  - `POST /posts`: Protected, creates a new post linked to the authenticated user.
+  - `PUT /posts/:id` and `DELETE /posts/:id`: Protected, available only for the owner of the post.
+
+- **Token Attachment**:
+  - An HTTP interceptor is used to automatically append the JWT token to outgoing requests if the user is logged in.
+
+- **Debugging & Logging**:
+  - Upon login, user details and token are logged to the console in development mode.
+  - Failed requests (e.g., expired token) trigger logout or redirection to the login page.
 
 ---
 
