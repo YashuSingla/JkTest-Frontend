@@ -13,7 +13,7 @@ export class PostService {
   readonly allPosts = this.posts.asReadonly();
 
   fetchPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${environment.apiBaseUrl}/posts`);
+    return this.http.get<Post[]>(`${environment.apiBaseUrl}/posts/my-posts`);
   }
 
   loadPosts() {
