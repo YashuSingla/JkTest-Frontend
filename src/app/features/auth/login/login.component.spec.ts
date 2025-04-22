@@ -61,5 +61,11 @@ describe('LoginComponent (Jest)', () => {
   it('should not navigate if user is not logged in', () => {
     expect(routerMock.navigate).not.toHaveBeenCalled();
   });
+
+  it('should render Google Sign-In button container', () => {
+    const buttonElement = fixture.nativeElement.querySelector('#google-button');
+    expect(buttonElement).toBeTruthy();
+  });
+  
   
 });
