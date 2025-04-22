@@ -50,6 +50,11 @@ describe('DashboardComponent (Jest)', () => {
     expect(listItems[1].nativeElement.textContent).toContain('Mock Post Two');
   });
 
+  it('should have posts defined from service', () => {
+    expect(component.posts().length).toBe(2);
+    expect(component.posts()[0].title).toBe('Mock Post One');    
+  });  
+
   it('should have a router link to create a new post', () => {
     const link = fixture.debugElement.query(By.css('a[routerLink="/posts/new"]'));
     expect(link).toBeTruthy();
